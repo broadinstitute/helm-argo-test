@@ -24,7 +24,6 @@ helm install ${DeployName} argo/argo-cd -f values.yaml -n ${namespace}
 #connect to argo pod
 ArgoCdServer=$(kubectl get pods -n ${namespace} -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)
 echo "UserName to log in is admin and the Password is ${ArgoCdServer}\nUserName:admin\nPassword:${ArgoCdServer}"
-#kubectl port-forward svc/${DeployName}-argocd-server -n ${namespace} 8080:443
 
 
 
