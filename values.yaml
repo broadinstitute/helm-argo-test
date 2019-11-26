@@ -10,3 +10,6 @@ rbac:
     - get
     - list
     - watch
+server:
+  service:
+    type: LoadBalancer
