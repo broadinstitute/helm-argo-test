@@ -12,12 +12,22 @@ else
     helm repo update
 fi
 
-# argocd cli
-brew tap argoproj/tap
-brew install argoproj/tap/argocd
+# argocd cli install
+command -v argocd >/dev/null 2>&1 || {
+    echo "argocd not found, installing";
+    brew tap argoproj/tap
+    brew install argoproj/tap/argocd
+}
+
+#check for namespace
+if kubectl get namespace ${namespace}; then
+    echo "namespace ${namespace} found"
+else
+    echo "namespace ${namespace} not found creating"
+    kubectl create namespace ${namespace}
+fi
 
 
-kubectl create namespace ${namespace}
 kubectl apply -f psp -n ${namespace}
 helm install ${DeployName} argo/argo-cd -f values.yaml -n ${namespace}
 
