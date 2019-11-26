@@ -1,0 +1,20 @@
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: helm-pod-running-policy
+  labels:
+    name: helm-podsecuritypolicy
+spec:
+  privileged: true
+  allowedCapabilities:
+    - IPC_LOCK
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  runAsUser:
+    rule: RunAsAny
+  fsGroup:
+    rule: RunAsAny
+  volumes:
+  - '*'

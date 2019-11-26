@@ -1,0 +1,12 @@
+serviceAccount:
+  create: true
+  name: argo-sa
+rbac:
+  - apiGroups:
+    - argoproj.io
+    resources:
+    - applications
+    verbs:
+    - get
+    - list
+    - watch
